@@ -1,0 +1,1006 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD25\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">4/4/2026</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">8:07:38 AM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc" class="file"><acronym title="D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc">D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">210</td></tr>
+</table>
+</td>
+</table><a name="IDVB4TZKCR5I5IJQWC0HJ5WV3GALSDXPCOXLK3CHGZ0RNBOLQ0N03K"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID2IODNEKGNOY3JY0W2D1IPC1ALOCVCZQ2VGCQJLLGRYDZFJRQSUJH">Clearance Constraint (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">202</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDV4XDEKJGY5YAK2HTWFBSBTHIEHXR2H2MYFQW0GNJIBCMMRLEJDJE">Clearance Constraint (Gap=0.152mm) (WithinRoom('USC_C')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDTOR4PDNRGPRQIBCT1XKS5MCDDPR1IM0KTFMTDNH3IMU0KD4EP1Y">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDA4U2VLNNS02VZ0L5YN5APIPKEUDQU20SXEUY2I4HLXIB3D2EL2K">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDJQBR4HN51FEZL0V1KOHIIOXNGIFS4X5PHCRD2SCRCREU5VPMAWCM">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZGK2VLDPFLBVB03ZAA2WMA1W2GUV5HFJ02FMAPFVRLNJ2Z1PTYFD">Width Constraint (Min=0.254mm) (Max=1mm) (Preferred=0.6mm) (InNet('GND'))</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDRTACFU3GL1X4OLZR0DSHHYKJBCZFVWQUCIIQU3LNR13FONMPUYFP">Width Constraint (Min=0.127mm) (Max=1mm) (Preferred=0.254mm) (All)</a></td>
+<td class="column2">5</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID0R3DQKPR1MUMO2EWUHY2TWHP0P1SYUCEKZFCA2ITUOT3QO442PTC">Routing Topology Rule(Topology=Shortest) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDPZDLZ2ATZ3PBBPUFGLATGJ3RSPFP3ZW5NPXYFBNTNLKS5JDFJ4L">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.508mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID3AA03GYSOGHNNLDDGG11XNU0YESUHKOUZMSZEIHGA54CLOE0BOVJ">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDNRRP0EMUNQTYLX52FW5S0PNGZH3VQS0YUOPMKKHG5KPT1NUNECM">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID1BR155CJKFH1MYXHFU3URQR1PI530XVJ0T4EHEG2GTQ10LD3CEGG">Minimum Solder Mask Sliver (Gap=0.08mm) (InComponent('U1') OR InComponent('U2') OR InComponent('U5') OR InComponent('U6')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDRHVANSONFLAQLQOLQRIG0T3RAL2GXSXNUKAPG4PTSTPS3P030E0H">Minimum Solder Mask Sliver (Gap=0.08mm) (InComponent('J1') OR InComponent('J5')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDFKSM0FZZ5YQBMBIEYDLGDHUVUCNEUWYJGVHU5LPIJWUX3JGNFE1F">Minimum Solder Mask Sliver (Gap=0.12mm) (InComponent('U10') OR InComponent('U9') OR InComponent('U3')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID4JOHTUDV35BQM5GYOK3PVZNPCCEVMODPSRXWN2L10II3D0LX1KFM">Minimum Solder Mask Sliver (Gap=0.06mm) (InComponent('U7')),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDP3PHXYHNHQ3EJZ1OPSUVNQGA1C55NV2H23XCNYGUBRRPDUDTN5WC">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDKMWCCWVATDCWEL2CVEPUAZE4YIKBZRLNYZAH3ADAKTF1CYNVLCLH">Silk To Solder Mask (Clearance=0.254mm) (IsText),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDLV1OGYZQSGKPJF4S3WCWXEJIGLQV4X4ZGS3B1VNLTDSN5DULBD4N">Silk to Silk (Clearance=0.2mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDZ45XVPJ4533BPU2M1QSKOFB3NDJMK24QOR4DWJEMLC5351BCCYGH">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDW3OB4HZIS4O2IX2AWZN21YWVKEIHRIMAA0GJ1ONWHN3DLKS144WD">Room USC_C_1 (Bounding Region = (43.688mm, 0.127mm, 54.61mm, 9.525mm) (False)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDFAQWCBWC2TDBJIZID1QHB4O3RHJOHD4U2XZVLJPV5OJBH3BMOC4K">Room USC_C (Bounding Region = (0mm, 32.766mm, 9.398mm, 43.688mm) (False)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDQEBU5XB2L4EPK325J4ISN123EJNUB3CUSR0XQYFTHDOXRGZ52RE">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">210</td>
+</tr>
+</table><br><a name="ID2IODNEKGNOY3JY0W2D1IPC1ALOCVCZQ2VGCQJLLGRYDZFJRQSUJH"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Clearance Constraint (Gap=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1830.125mil|Location2.X=1841.375mil|Location1.Y=264.045mil|Location2.Y=275.295mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1830.125mil|Location2.X=1841.375mil|Location1.Y=264.045mil|Location2.Y=275.295mil|Absolute=True">Clearance Constraint: (0.175mm &lt; 0.254mm) Between Hole of Pad J5-(46.628mm,6.437mm) on Multi-Layer And Pad J5-A1_B12(46.328mm,7.557mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1836.436mil|Location2.X=1853.994mil|Location1.Y=263.588mil|Location2.Y=274.838mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1836.436mil|Location2.X=1853.994mil|Location1.Y=263.588mil|Location2.Y=274.838mil|Absolute=True">Clearance Constraint: (0.213mm &lt; 0.254mm) Between Hole of Pad J5-(46.628mm,6.437mm) on Multi-Layer And Pad J5-A4_B9(47.128mm,7.557mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2058.4mil|Location2.X=2069.65mil|Location1.Y=264.044mil|Location2.Y=275.294mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2058.4mil|Location2.X=2069.65mil|Location1.Y=264.044mil|Location2.Y=275.294mil|Absolute=True">Clearance Constraint: (0.175mm &lt; 0.254mm) Between Hole of Pad J5-(52.418mm,6.437mm) on Multi-Layer And Pad J5-B1_A12(52.728mm,7.557mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2052.065mil|Location2.X=2069.663mil|Location1.Y=263.628mil|Location2.Y=274.878mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2052.065mil|Location2.X=2069.663mil|Location1.Y=263.628mil|Location2.Y=274.878mil|Absolute=True">Clearance Constraint: (0.21mm &lt; 0.254mm) Between Hole of Pad J5-(52.418mm,6.437mm) on Multi-Layer And Pad J5-B4_A9(51.928mm,7.557mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1834.06mil|Location2.X=1845.31mil|Location1.Y=304.495mil|Location2.Y=315.745mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1834.06mil|Location2.X=1845.31mil|Location1.Y=304.495mil|Location2.Y=315.745mil|Absolute=True">Clearance Constraint: (0.2mm &lt; 0.254mm) Between Pad J5-A4_B9(47.128mm,7.557mm) on Top Layer And Track (45.847mm,8.358mm)(46.328mm,7.877mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1834.06mil|Location2.X=1845.31mil|Location1.Y=291.897mil|Location2.Y=303.147mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1834.06mil|Location2.X=1845.31mil|Location1.Y=291.897mil|Location2.Y=303.147mil|Absolute=True">Clearance Constraint: (0.2mm &lt; 0.254mm) Between Pad J5-A4_B9(47.128mm,7.557mm) on Top Layer And Track (46.328mm,7.557mm)(46.328mm,7.877mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2054.534mil|Location2.X=2065.784mil|Location1.Y=291.898mil|Location2.Y=303.148mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2054.534mil|Location2.X=2065.784mil|Location1.Y=291.898mil|Location2.Y=303.148mil|Absolute=True">Clearance Constraint: (0.2mm &lt; 0.254mm) Between Pad J5-B4_A9(51.928mm,7.557mm) on Top Layer And Track (52.728mm,7.557mm)(52.728mm,7.877mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2054.534mil|Location2.X=2065.784mil|Location1.Y=304.497mil|Location2.Y=315.747mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2054.534mil|Location2.X=2065.784mil|Location1.Y=304.497mil|Location2.Y=315.747mil|Absolute=True">Clearance Constraint: (0.2mm &lt; 0.254mm) Between Pad J5-B4_A9(51.928mm,7.557mm) on Top Layer And Track (52.728mm,7.877mm)(52.959mm,8.108mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1122.099mil|Location2.X=1134.085mil|Location1.Y=921.147mil|Location2.Y=936.912mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1122.099mil|Location2.X=1134.085mil|Location1.Y=921.147mil|Location2.Y=936.912mil|Absolute=True">Clearance Constraint: (0.165mm &lt; 0.254mm) Between Pad R43-2(28.067mm,23.087mm) on Top Layer And Via (28.956mm,23.876mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1149.14mil|Location2.X=1160.39mil|Location1.Y=924.651mil|Location2.Y=935.901mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1149.14mil|Location2.X=1160.39mil|Location1.Y=924.651mil|Location2.Y=935.901mil|Absolute=True">Clearance Constraint: (0.21mm &lt; 0.254mm) Between Pad U1-4(29.624mm,23.384mm) on Bottom Layer And Track (28.964mm,23.884mm)(29.624mm,23.884mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1172.171mil|Location2.X=1183.421mil|Location1.Y=924.651mil|Location2.Y=935.901mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1172.171mil|Location2.X=1183.421mil|Location1.Y=924.651mil|Location2.Y=935.901mil|Absolute=True">Clearance Constraint: (0.21mm &lt; 0.254mm) Between Pad U1-4(29.624mm,23.384mm) on Bottom Layer And Track (29.624mm,23.884mm)(30.391mm,23.884mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1146.064mil|Location2.X=1159.695mil|Location1.Y=923.405mil|Location2.Y=937.869mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1146.064mil|Location2.X=1159.695mil|Location1.Y=923.405mil|Location2.Y=937.869mil|Absolute=True">Clearance Constraint: (0.214mm &lt; 0.254mm) Between Pad U1-4(29.624mm,23.384mm) on Bottom Layer And Via (28.956mm,23.876mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1149.14mil|Location2.X=1160.39mil|Location1.Y=944.729mil|Location2.Y=955.979mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1149.14mil|Location2.X=1160.39mil|Location1.Y=944.729mil|Location2.Y=955.979mil|Absolute=True">Clearance Constraint: (0.21mm &lt; 0.254mm) Between Pad U1-6(29.624mm,24.384mm) on Bottom Layer And Track (28.964mm,23.884mm)(29.624mm,23.884mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1172.171mil|Location2.X=1183.421mil|Location1.Y=944.729mil|Location2.Y=955.979mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1172.171mil|Location2.X=1183.421mil|Location1.Y=944.729mil|Location2.Y=955.979mil|Absolute=True">Clearance Constraint: (0.21mm &lt; 0.254mm) Between Pad U1-6(29.624mm,24.384mm) on Bottom Layer And Track (29.624mm,23.884mm)(30.391mm,23.884mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1145.973mil|Location2.X=1159.969mil|Location1.Y=942.888mil|Location2.Y=957.005mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1145.973mil|Location2.X=1159.969mil|Location1.Y=942.888mil|Location2.Y=957.005mil|Absolute=True">Clearance Constraint: (0.225mm &lt; 0.254mm) Between Pad U1-6(29.624mm,24.384mm) on Bottom Layer And Via (28.956mm,23.876mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2051.48mil|Location2.X=2068.281mil|Location1.Y=564.952mil|Location2.Y=576.202mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2051.48mil|Location2.X=2068.281mil|Location1.Y=564.952mil|Location2.Y=576.202mil|Absolute=True">Clearance Constraint: (0.235mm &lt; 0.254mm) Between Pad U2-1(52.054mm,14.097mm) on Bottom Layer And Via (52.451mm,14.859mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1996.816mil|Location2.X=2013.74mil|Location1.Y=564.879mil|Location2.Y=576.129mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1996.816mil|Location2.X=2013.74mil|Location1.Y=564.879mil|Location2.Y=576.129mil|Absolute=True">Clearance Constraint: (0.228mm &lt; 0.254mm) Between Pad U2-3(51.054mm,14.097mm) on Bottom Layer And Via (50.673mm,14.859mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2014.021mil|Location2.X=2025.271mil|Location1.Y=621.324mil|Location2.Y=632.574mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2014.021mil|Location2.X=2025.271mil|Location1.Y=621.324mil|Location2.Y=632.574mil|Absolute=True">Clearance Constraint: (0.21mm &lt; 0.254mm) Between Pad U2-4(51.054mm,15.632mm) on Bottom Layer And Track (51.554mm,15.632mm)(51.554mm,16.248mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1996.766mil|Location2.X=2013.818mil|Location1.Y=594.113mil|Location2.Y=605.363mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1996.766mil|Location2.X=2013.818mil|Location1.Y=594.113mil|Location2.Y=605.363mil|Absolute=True">Clearance Constraint: (0.238mm &lt; 0.254mm) Between Pad U2-4(51.054mm,15.632mm) on Bottom Layer And Via (50.673mm,14.859mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2012.743mil|Location2.X=2026.23mil|Location1.Y=620.552mil|Location2.Y=635.147mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2012.743mil|Location2.X=2026.23mil|Location1.Y=620.552mil|Location2.Y=635.147mil|Absolute=True">Clearance Constraint: (0.195mm &lt; 0.254mm) Between Pad U2-4(51.054mm,15.632mm) on Bottom Layer And Via (51.562mm,16.256mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2034.099mil|Location2.X=2045.349mil|Location1.Y=621.324mil|Location2.Y=632.574mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2034.099mil|Location2.X=2045.349mil|Location1.Y=621.324mil|Location2.Y=632.574mil|Absolute=True">Clearance Constraint: (0.21mm &lt; 0.254mm) Between Pad U2-6(52.054mm,15.632mm) on Bottom Layer And Track (51.554mm,15.632mm)(51.554mm,16.248mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2035.603mil|Location2.X=2049.255mil|Location1.Y=623.801mil|Location2.Y=638.247mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2035.603mil|Location2.X=2049.255mil|Location1.Y=623.801mil|Location2.Y=638.247mil|Absolute=True">Clearance Constraint: (0.184mm &lt; 0.254mm) Between Pad U2-6(52.054mm,15.632mm) on Bottom Layer And Via (51.562mm,16.256mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2051.531mil|Location2.X=2068.336mil|Location1.Y=594.042mil|Location2.Y=605.292mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2051.531mil|Location2.X=2068.336mil|Location1.Y=594.042mil|Location2.Y=605.292mil|Absolute=True">Clearance Constraint: (0.245mm &lt; 0.254mm) Between Pad U2-6(52.054mm,15.632mm) on Bottom Layer And Via (52.451mm,14.859mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3042.292mil|Location2.X=3053.542mil|Location1.Y=1366.54mil|Location2.Y=1377.79mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3042.292mil|Location2.X=3053.542mil|Location1.Y=1366.54mil|Location2.Y=1377.79mil|Absolute=True">Clearance Constraint: (0.233mm &lt; 0.254mm) Between Pad U5-4(77.161mm,35.145mm) on Bottom Layer And Track (77.661mm,34.417mm)(77.661mm,35.145mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3042.292mil|Location2.X=3053.542mil|Location1.Y=1378.056mil|Location2.Y=1389.306mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3042.292mil|Location2.X=3053.542mil|Location1.Y=1378.056mil|Location2.Y=1389.306mil|Absolute=True">Clearance Constraint: (0.233mm &lt; 0.254mm) Between Pad U5-4(77.161mm,35.145mm) on Bottom Layer And Track (77.661mm,35.145mm)(77.682mm,35.166mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3061.465mil|Location2.X=3072.715mil|Location1.Y=1366.54mil|Location2.Y=1377.79mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3061.465mil|Location2.X=3072.715mil|Location1.Y=1366.54mil|Location2.Y=1377.79mil|Absolute=True">Clearance Constraint: (0.233mm &lt; 0.254mm) Between Pad U5-6(78.161mm,35.145mm) on Bottom Layer And Track (77.661mm,34.417mm)(77.661mm,35.145mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3061.879mil|Location2.X=3073.129mil|Location1.Y=1378.883mil|Location2.Y=1390.133mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3061.879mil|Location2.X=3073.129mil|Location1.Y=1378.883mil|Location2.Y=1390.133mil|Absolute=True">Clearance Constraint: (0.212mm &lt; 0.254mm) Between Pad U5-6(78.161mm,35.145mm) on Bottom Layer And Track (77.661mm,35.145mm)(77.682mm,35.166mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1412.293mil|Location2.X=1423.543mil|Location1.Y=1737.607mil|Location2.Y=1748.857mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1412.293mil|Location2.X=1423.543mil|Location1.Y=1737.607mil|Location2.Y=1748.857mil|Absolute=True">Clearance Constraint: (0.233mm &lt; 0.254mm) Between Pad U6-4(35.759mm,44.571mm) on Bottom Layer And Track (36.259mm,43.803mm)(36.259mm,44.571mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1431.466mil|Location2.X=1442.716mil|Location1.Y=1737.607mil|Location2.Y=1748.857mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1431.466mil|Location2.X=1442.716mil|Location1.Y=1737.607mil|Location2.Y=1748.857mil|Absolute=True">Clearance Constraint: (0.233mm &lt; 0.254mm) Between Pad U6-6(36.759mm,44.571mm) on Bottom Layer And Track (36.259mm,43.803mm)(36.259mm,44.571mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1858.386mil|Location2.X=1872.393mil|Location1.Y=1077.168mil|Location2.Y=1091.274mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1858.386mil|Location2.X=1872.393mil|Location1.Y=1077.168mil|Location2.Y=1091.274mil|Absolute=True">Clearance Constraint: (0.2539mm (9.9942mil) &lt; 0.254mm (10mil)) Between Pad U7-11(47.496mm,27.29mm) on Top Layer And Track (47.142mm,27.643mm)(47.206mm,27.643mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1872.176mil|Location2.X=1886.183mil|Location1.Y=1090.958mil|Location2.Y=1105.064mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1872.176mil|Location2.X=1886.183mil|Location1.Y=1090.958mil|Location2.Y=1105.064mil|Absolute=True">Clearance Constraint: (0.2539mm (9.9941mil) &lt; 0.254mm (10mil)) Between Pad U7-11(47.496mm,27.29mm) on Top Layer And Track (47.206mm,27.643mm)(47.651mm,28.089mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1875.709mil|Location2.X=1886.959mil|Location1.Y=1092.422mil|Location2.Y=1103.672mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1875.709mil|Location2.X=1886.959mil|Location1.Y=1092.422mil|Location2.Y=1103.672mil|Absolute=True">Clearance Constraint: (0.2539mm (9.9942mil) &lt; 0.254mm (10mil)) Between Pad U7-11(47.496mm,27.29mm) on Top Layer And Track (47.651mm,28.089mm)(50.369mm,28.089mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=873.665mil|Location2.X=884.915mil|Location1.Y=1761.085mil|Location2.Y=1772.335mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=873.665mil|Location2.X=884.915mil|Location1.Y=1761.085mil|Location2.Y=1772.335mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (22.073mm,44.788mm)(22.159mm,44.874mm) on Top Layer And Track (22.509mm,44.107mm)(22.509mm,47.873mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=873.666mil|Location2.X=884.916mil|Location1.Y=1956.087mil|Location2.Y=1967.337mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=873.666mil|Location2.X=884.916mil|Location1.Y=1956.087mil|Location2.Y=1967.337mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (22.073mm,49.913mm)(22.159mm,49.827mm) on Top Layer And Track (22.509mm,47.873mm)(22.509mm,51.004mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=873.665mil|Location2.X=884.915mil|Location1.Y=1879.131mil|Location2.Y=1890.381mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=873.665mil|Location2.X=884.915mil|Location1.Y=1879.131mil|Location2.Y=1890.381mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (22.159mm,44.874mm)(22.159mm,48.018mm) on Top Layer And Track (22.509mm,44.107mm)(22.509mm,47.873mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=873.665mil|Location2.X=884.915mil|Location1.Y=1879.131mil|Location2.Y=1890.381mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=873.665mil|Location2.X=884.915mil|Location1.Y=1879.131mil|Location2.Y=1890.381mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (22.159mm,44.874mm)(22.159mm,48.018mm) on Top Layer And Track (22.509mm,47.873mm)(22.509mm,47.873mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=873.665mil|Location2.X=884.915mil|Location1.Y=1884.839mil|Location2.Y=1896.089mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=873.665mil|Location2.X=884.915mil|Location1.Y=1884.839mil|Location2.Y=1896.089mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (22.159mm,44.874mm)(22.159mm,48.018mm) on Top Layer And Track (22.509mm,47.873mm)(22.509mm,51.004mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=873.665mil|Location2.X=884.915mil|Location1.Y=1881.985mil|Location2.Y=1899.477mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=873.665mil|Location2.X=884.915mil|Location1.Y=1881.985mil|Location2.Y=1899.477mil|Absolute=True">Clearance Constraint: (0.232mm &lt; 0.254mm) Between Track (22.159mm,48.018mm)(22.159mm,48.018mm) on Top Layer And Track (22.509mm,44.107mm)(22.509mm,47.873mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=873.665mil|Location2.X=884.915mil|Location1.Y=1881.985mil|Location2.Y=1899.477mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=873.665mil|Location2.X=884.915mil|Location1.Y=1881.985mil|Location2.Y=1899.477mil|Absolute=True">Clearance Constraint: (0.232mm &lt; 0.254mm) Between Track (22.159mm,48.018mm)(22.159mm,48.018mm) on Top Layer And Track (22.509mm,47.873mm)(22.509mm,47.873mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=873.666mil|Location2.X=884.916mil|Location1.Y=1884.839mil|Location2.Y=1896.089mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=873.666mil|Location2.X=884.916mil|Location1.Y=1884.839mil|Location2.Y=1896.089mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (22.159mm,48.018mm)(22.159mm,48.018mm) on Top Layer And Track (22.509mm,47.873mm)(22.509mm,51.004mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=873.665mil|Location2.X=884.915mil|Location1.Y=1881.985mil|Location2.Y=1899.477mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=873.665mil|Location2.X=884.915mil|Location1.Y=1881.985mil|Location2.Y=1899.477mil|Absolute=True">Clearance Constraint: (0.232mm &lt; 0.254mm) Between Track (22.159mm,48.018mm)(22.159mm,49.827mm) on Top Layer And Track (22.509mm,44.107mm)(22.509mm,47.873mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=873.665mil|Location2.X=884.915mil|Location1.Y=1881.985mil|Location2.Y=1899.477mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=873.665mil|Location2.X=884.915mil|Location1.Y=1881.985mil|Location2.Y=1899.477mil|Absolute=True">Clearance Constraint: (0.232mm &lt; 0.254mm) Between Track (22.159mm,48.018mm)(22.159mm,49.827mm) on Top Layer And Track (22.509mm,47.873mm)(22.509mm,47.873mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=873.666mil|Location2.X=884.916mil|Location1.Y=1884.839mil|Location2.Y=1896.089mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=873.666mil|Location2.X=884.916mil|Location1.Y=1884.839mil|Location2.Y=1896.089mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (22.159mm,48.018mm)(22.159mm,49.827mm) on Top Layer And Track (22.509mm,47.873mm)(22.509mm,51.004mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=905.438mil|Location2.X=916.688mil|Location1.Y=449.139mil|Location2.Y=460.389mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=905.438mil|Location2.X=916.688mil|Location1.Y=449.139mil|Location2.Y=460.389mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (22.506mm,12.011mm)(22.966mm,11.551mm) on Top Layer And Track (23.316mm,10.963mm)(23.316mm,11.551mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=905.438mil|Location2.X=916.688mil|Location1.Y=449.139mil|Location2.Y=460.389mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=905.438mil|Location2.X=916.688mil|Location1.Y=449.139mil|Location2.Y=460.389mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (22.506mm,12.011mm)(22.966mm,11.551mm) on Top Layer And Track (23.316mm,11.551mm)(23.776mm,12.011mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=904.375mil|Location2.X=915.625mil|Location1.Y=398.879mil|Location2.Y=410.129mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=904.375mil|Location2.X=915.625mil|Location1.Y=398.879mil|Location2.Y=410.129mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (22.853mm,10.188mm)(22.939mm,10.274mm) on Top Layer And Track (23.289mm,10.274mm)(23.289mm,10.936mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=904.375mil|Location2.X=915.625mil|Location1.Y=398.879mil|Location2.Y=410.129mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=904.375mil|Location2.X=915.625mil|Location1.Y=398.879mil|Location2.Y=410.129mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (22.853mm,10.188mm)(22.939mm,10.274mm) on Top Layer And Track (23.289mm,10.274mm)(23.375mm,10.188mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=904.375mil|Location2.X=915.625mil|Location1.Y=424.926mil|Location2.Y=436.176mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=904.375mil|Location2.X=915.625mil|Location1.Y=424.926mil|Location2.Y=436.176mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (22.939mm,10.274mm)(22.939mm,11.081mm) on Top Layer And Track (23.289mm,10.274mm)(23.289mm,10.936mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=904.375mil|Location2.X=915.625mil|Location1.Y=398.879mil|Location2.Y=410.129mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=904.375mil|Location2.X=915.625mil|Location1.Y=398.879mil|Location2.Y=410.129mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (22.939mm,10.274mm)(22.939mm,11.081mm) on Top Layer And Track (23.289mm,10.274mm)(23.375mm,10.188mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=904.375mil|Location2.X=915.625mil|Location1.Y=424.926mil|Location2.Y=436.176mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=904.375mil|Location2.X=915.625mil|Location1.Y=424.926mil|Location2.Y=436.176mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (22.939mm,10.274mm)(22.939mm,11.081mm) on Top Layer And Track (23.289mm,10.936mm)(23.316mm,10.963mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=904.907mil|Location2.X=916.157mil|Location1.Y=425.989mil|Location2.Y=437.239mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=904.907mil|Location2.X=916.157mil|Location1.Y=425.989mil|Location2.Y=437.239mil|Absolute=True">Clearance Constraint: (0.23mm &lt; 0.254mm) Between Track (22.939mm,10.274mm)(22.939mm,11.081mm) on Top Layer And Track (23.316mm,10.963mm)(23.316mm,11.551mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=904.907mil|Location2.X=916.157mil|Location1.Y=428.312mil|Location2.Y=445.195mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=904.907mil|Location2.X=916.157mil|Location1.Y=428.312mil|Location2.Y=445.195mil|Absolute=True">Clearance Constraint: (0.219mm &lt; 0.254mm) Between Track (22.939mm,11.081mm)(22.966mm,11.108mm) on Top Layer And Track (23.289mm,10.274mm)(23.289mm,10.936mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=904.907mil|Location2.X=916.157mil|Location1.Y=428.312mil|Location2.Y=445.195mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=904.907mil|Location2.X=916.157mil|Location1.Y=428.312mil|Location2.Y=445.195mil|Absolute=True">Clearance Constraint: (0.219mm &lt; 0.254mm) Between Track (22.939mm,11.081mm)(22.966mm,11.108mm) on Top Layer And Track (23.289mm,10.936mm)(23.316mm,10.963mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=905.438mil|Location2.X=916.688mil|Location1.Y=431.697mil|Location2.Y=442.947mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=905.438mil|Location2.X=916.688mil|Location1.Y=431.697mil|Location2.Y=442.947mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (22.939mm,11.081mm)(22.966mm,11.108mm) on Top Layer And Track (23.316mm,10.963mm)(23.316mm,11.551mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=904.907mil|Location2.X=916.157mil|Location1.Y=428.312mil|Location2.Y=445.195mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=904.907mil|Location2.X=916.157mil|Location1.Y=428.312mil|Location2.Y=445.195mil|Absolute=True">Clearance Constraint: (0.219mm &lt; 0.254mm) Between Track (22.966mm,11.108mm)(22.966mm,11.551mm) on Top Layer And Track (23.289mm,10.274mm)(23.289mm,10.936mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=904.907mil|Location2.X=916.157mil|Location1.Y=428.312mil|Location2.Y=445.195mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=904.907mil|Location2.X=916.157mil|Location1.Y=428.312mil|Location2.Y=445.195mil|Absolute=True">Clearance Constraint: (0.219mm &lt; 0.254mm) Between Track (22.966mm,11.108mm)(22.966mm,11.551mm) on Top Layer And Track (23.289mm,10.936mm)(23.316mm,10.963mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=905.438mil|Location2.X=916.688mil|Location1.Y=431.697mil|Location2.Y=442.947mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=905.438mil|Location2.X=916.688mil|Location1.Y=431.697mil|Location2.Y=442.947mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (22.966mm,11.108mm)(22.966mm,11.551mm) on Top Layer And Track (23.316mm,10.963mm)(23.316mm,11.551mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=905.438mil|Location2.X=916.688mil|Location1.Y=449.139mil|Location2.Y=460.389mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=905.438mil|Location2.X=916.688mil|Location1.Y=449.139mil|Location2.Y=460.389mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (22.966mm,11.108mm)(22.966mm,11.551mm) on Top Layer And Track (23.316mm,11.551mm)(23.776mm,12.011mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=933.024mil|Location2.X=944.274mil|Location1.Y=1318.918mil|Location2.Y=1330.168mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=933.024mil|Location2.X=944.274mil|Location1.Y=1318.918mil|Location2.Y=1330.168mil|Absolute=True">Clearance Constraint: (0.2539mm (9.9942mil) &lt; 0.254mm (10mil)) Between Track (23.643mm,27.792mm)(23.643mm,37.486mm) on Layer 2 And Via (24.269mm,33.643mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=952.97mil|Location2.X=971.065mil|Location1.Y=291.954mil|Location2.Y=303.204mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=952.97mil|Location2.X=971.065mil|Location1.Y=291.954mil|Location2.Y=303.204mil|Absolute=True">Clearance Constraint: (0.214mm &lt; 0.254mm) Between Track (23.921mm,6.913mm)(24.391mm,7.384mm) on Top Layer And Track (24.019mm,7.734mm)(24.305mm,7.734mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=952.97mil|Location2.X=971.065mil|Location1.Y=291.954mil|Location2.Y=303.204mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=952.97mil|Location2.X=971.065mil|Location1.Y=291.954mil|Location2.Y=303.204mil|Absolute=True">Clearance Constraint: (0.214mm &lt; 0.254mm) Between Track (23.921mm,6.913mm)(24.391mm,7.384mm) on Top Layer And Track (24.305mm,7.734mm)(24.305mm,7.734mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=954.663mil|Location2.X=965.913mil|Location1.Y=291.954mil|Location2.Y=303.204mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=954.663mil|Location2.X=965.913mil|Location1.Y=291.954mil|Location2.Y=303.204mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (23.921mm,6.913mm)(24.391mm,7.384mm) on Top Layer And Track (24.305mm,7.734mm)(35.433mm,7.734mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=952.97mil|Location2.X=971.065mil|Location1.Y=291.954mil|Location2.Y=303.204mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=952.97mil|Location2.X=971.065mil|Location1.Y=291.954mil|Location2.Y=303.204mil|Absolute=True">Clearance Constraint: (0.214mm &lt; 0.254mm) Between Track (24.019mm,7.734mm)(24.305mm,7.734mm) on Top Layer And Track (24.391mm,7.384mm)(35.578mm,7.384mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=952.97mil|Location2.X=971.065mil|Location1.Y=291.954mil|Location2.Y=303.204mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=952.97mil|Location2.X=971.065mil|Location1.Y=291.954mil|Location2.Y=303.204mil|Absolute=True">Clearance Constraint: (0.214mm &lt; 0.254mm) Between Track (24.305mm,7.734mm)(24.305mm,7.734mm) on Top Layer And Track (24.391mm,7.384mm)(35.578mm,7.384mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=954.663mil|Location2.X=965.913mil|Location1.Y=291.954mil|Location2.Y=303.204mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=954.663mil|Location2.X=965.913mil|Location1.Y=291.954mil|Location2.Y=303.204mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (24.305mm,7.734mm)(35.433mm,7.734mm) on Top Layer And Track (24.391mm,7.384mm)(35.578mm,7.384mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1394.228mil|Location2.X=1408.235mil|Location1.Y=293.972mil|Location2.Y=308.078mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1394.228mil|Location2.X=1408.235mil|Location1.Y=293.972mil|Location2.Y=308.078mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (24.305mm,7.734mm)(35.433mm,7.734mm) on Top Layer And Track (35.578mm,7.384mm)(45.925mm,17.731mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1389.357mil|Location2.X=1400.607mil|Location1.Y=291.954mil|Location2.Y=303.204mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1389.357mil|Location2.X=1400.607mil|Location1.Y=291.954mil|Location2.Y=303.204mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (24.391mm,7.384mm)(35.578mm,7.384mm) on Top Layer And Track (35.433mm,7.734mm)(45.575mm,17.876mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=979.833mil|Location2.X=991.083mil|Location1.Y=1734.375mil|Location2.Y=1745.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=979.833mil|Location2.X=991.083mil|Location1.Y=1734.375mil|Location2.Y=1745.625mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (24.444mm,43.434mm)(25.031mm,44.021mm) on Top Layer And Track (24.444mm,44.958mm)(25.031mm,44.371mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=979.833mil|Location2.X=991.083mil|Location1.Y=1734.375mil|Location2.Y=1745.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=979.833mil|Location2.X=991.083mil|Location1.Y=1734.375mil|Location2.Y=1745.625mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (24.444mm,43.434mm)(25.031mm,44.021mm) on Top Layer And Track (25.031mm,44.371mm)(26.386mm,44.371mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=979.833mil|Location2.X=991.083mil|Location1.Y=1734.375mil|Location2.Y=1745.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=979.833mil|Location2.X=991.083mil|Location1.Y=1734.375mil|Location2.Y=1745.625mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (24.444mm,44.958mm)(25.031mm,44.371mm) on Top Layer And Track (25.031mm,44.021mm)(26.241mm,44.021mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=979.833mil|Location2.X=991.083mil|Location1.Y=1734.375mil|Location2.Y=1745.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=979.833mil|Location2.X=991.083mil|Location1.Y=1734.375mil|Location2.Y=1745.625mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (25.031mm,44.021mm)(26.241mm,44.021mm) on Top Layer And Track (25.031mm,44.371mm)(26.386mm,44.371mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1032.357mil|Location2.X=1046.463mil|Location1.Y=1729.6mil|Location2.Y=1743.607mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1032.357mil|Location2.X=1046.463mil|Location1.Y=1729.6mil|Location2.Y=1743.607mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (25.031mm,44.021mm)(26.241mm,44.021mm) on Top Layer And Track (26.386mm,44.371mm)(28.575mm,42.182mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1027.485mil|Location2.X=1038.735mil|Location1.Y=1734.375mil|Location2.Y=1745.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1027.485mil|Location2.X=1038.735mil|Location1.Y=1734.375mil|Location2.Y=1745.625mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (25.031mm,44.371mm)(26.386mm,44.371mm) on Top Layer And Track (26.241mm,44.021mm)(28.225mm,42.037mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1032.357mil|Location2.X=1046.463mil|Location1.Y=1729.6mil|Location2.Y=1743.607mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1032.357mil|Location2.X=1046.463mil|Location1.Y=1729.6mil|Location2.Y=1743.607mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (26.241mm,44.021mm)(28.225mm,42.037mm) on Top Layer And Track (26.386mm,44.371mm)(28.575mm,42.182mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1112.485mil|Location2.X=1123.735mil|Location1.Y=1649.375mil|Location2.Y=1660.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1112.485mil|Location2.X=1123.735mil|Location1.Y=1649.375mil|Location2.Y=1660.625mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (26.241mm,44.021mm)(28.225mm,42.037mm) on Top Layer And Track (28.575mm,33.147mm)(28.575mm,42.182mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1110.467mil|Location2.X=1124.573mil|Location1.Y=1651.49mil|Location2.Y=1665.497mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1110.467mil|Location2.X=1124.573mil|Location1.Y=1651.49mil|Location2.Y=1665.497mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (26.386mm,44.371mm)(28.575mm,42.182mm) on Top Layer And Track (28.225mm,33.002mm)(28.225mm,42.037mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1112.485mil|Location2.X=1123.735mil|Location1.Y=1299.375mil|Location2.Y=1310.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1112.485mil|Location2.X=1123.735mil|Location1.Y=1299.375mil|Location2.Y=1310.625mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (28.225mm,33.002mm)(28.225mm,42.037mm) on Top Layer And Track (28.575mm,33.147mm)(28.575mm,42.182mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1112.485mil|Location2.X=1123.735mil|Location1.Y=1299.375mil|Location2.Y=1310.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1112.485mil|Location2.X=1123.735mil|Location1.Y=1299.375mil|Location2.Y=1310.625mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (28.225mm,33.002mm)(28.225mm,42.037mm) on Top Layer And Track (28.575mm,33.147mm)(37.852mm,23.87mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1114.503mil|Location2.X=1128.609mil|Location1.Y=1291.746mil|Location2.Y=1305.753mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1114.503mil|Location2.X=1128.609mil|Location1.Y=1291.746mil|Location2.Y=1305.753mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (28.225mm,33.002mm)(37.707mm,23.52mm) on Top Layer And Track (28.575mm,33.147mm)(28.575mm,42.182mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1114.503mil|Location2.X=1128.609mil|Location1.Y=1291.746mil|Location2.Y=1305.753mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1114.503mil|Location2.X=1128.609mil|Location1.Y=1291.746mil|Location2.Y=1305.753mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (28.225mm,33.002mm)(37.707mm,23.52mm) on Top Layer And Track (28.575mm,33.147mm)(37.852mm,23.87mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1479.755mil|Location2.X=1493.861mil|Location1.Y=926.494mil|Location2.Y=940.501mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1479.755mil|Location2.X=1493.861mil|Location1.Y=926.494mil|Location2.Y=940.501mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (28.225mm,33.002mm)(37.707mm,23.52mm) on Top Layer And Track (37.852mm,23.87mm)(40.646mm,23.87mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1484.627mil|Location2.X=1495.877mil|Location1.Y=927.233mil|Location2.Y=938.483mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1484.627mil|Location2.X=1495.877mil|Location1.Y=927.233mil|Location2.Y=938.483mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (28.575mm,33.147mm)(37.852mm,23.87mm) on Top Layer And Track (37.707mm,23.52mm)(40.791mm,23.52mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1394.228mil|Location2.X=1408.235mil|Location1.Y=293.972mil|Location2.Y=308.078mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1394.228mil|Location2.X=1408.235mil|Location1.Y=293.972mil|Location2.Y=308.078mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (35.433mm,7.734mm)(45.575mm,17.876mm) on Top Layer And Track (35.578mm,7.384mm)(45.925mm,17.731mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1795.548mil|Location2.X=1806.798mil|Location1.Y=698.145mil|Location2.Y=709.395mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1795.548mil|Location2.X=1806.798mil|Location1.Y=698.145mil|Location2.Y=709.395mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (35.433mm,7.734mm)(45.575mm,17.876mm) on Top Layer And Track (45.925mm,17.731mm)(45.925mm,22.607mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1793.53mil|Location2.X=1807.537mil|Location1.Y=693.273mil|Location2.Y=707.379mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1793.53mil|Location2.X=1807.537mil|Location1.Y=693.273mil|Location2.Y=707.379mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (35.578mm,7.384mm)(45.925mm,17.731mm) on Top Layer And Track (45.575mm,17.876mm)(45.575mm,22.462mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1484.627mil|Location2.X=1495.877mil|Location1.Y=927.233mil|Location2.Y=938.483mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1484.627mil|Location2.X=1495.877mil|Location1.Y=927.233mil|Location2.Y=938.483mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (37.707mm,23.52mm)(40.791mm,23.52mm) on Top Layer And Track (37.852mm,23.87mm)(40.646mm,23.87mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1594.627mil|Location2.X=1605.877mil|Location1.Y=927.233mil|Location2.Y=938.483mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1594.627mil|Location2.X=1605.877mil|Location1.Y=927.233mil|Location2.Y=938.483mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (37.707mm,23.52mm)(40.791mm,23.52mm) on Top Layer And Track (40.646mm,23.87mm)(41.3mm,24.523mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1599.499mil|Location2.X=1613.506mil|Location1.Y=929.251mil|Location2.Y=943.357mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1599.499mil|Location2.X=1613.506mil|Location1.Y=929.251mil|Location2.Y=943.357mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (37.852mm,23.87mm)(40.646mm,23.87mm) on Top Layer And Track (40.791mm,23.52mm)(41.547mm,24.275mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1599.499mil|Location2.X=1613.506mil|Location1.Y=929.251mil|Location2.Y=943.357mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1599.499mil|Location2.X=1613.506mil|Location1.Y=929.251mil|Location2.Y=943.357mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (40.646mm,23.87mm)(41.3mm,24.523mm) on Top Layer And Track (40.791mm,23.52mm)(41.547mm,24.275mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1625.215mil|Location2.X=1639.222mil|Location1.Y=954.967mil|Location2.Y=969.073mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1625.215mil|Location2.X=1639.222mil|Location1.Y=954.967mil|Location2.Y=969.073mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (40.646mm,23.87mm)(41.3mm,24.523mm) on Top Layer And Track (41.547mm,24.275mm)(41.593mm,24.275mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1626.117mil|Location2.X=1639.094mil|Location1.Y=954.967mil|Location2.Y=969.998mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1626.117mil|Location2.X=1639.094mil|Location1.Y=954.967mil|Location2.Y=969.998mil|Absolute=True">Clearance Constraint: (0.237mm &lt; 0.254mm) Between Track (40.646mm,23.87mm)(41.3mm,24.523mm) on Top Layer And Track (41.593mm,24.275mm)(42.041mm,24.723mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1625.215mil|Location2.X=1639.222mil|Location1.Y=954.967mil|Location2.Y=969.073mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1625.215mil|Location2.X=1639.222mil|Location1.Y=954.967mil|Location2.Y=969.073mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (40.791mm,23.52mm)(41.547mm,24.275mm) on Top Layer And Track (41.3mm,24.523mm)(41.3mm,24.569mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1625.215mil|Location2.X=1640.156mil|Location1.Y=955.869mil|Location2.Y=968.953mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1625.215mil|Location2.X=1640.156mil|Location1.Y=955.869mil|Location2.Y=968.953mil|Absolute=True">Clearance Constraint: (0.237mm &lt; 0.254mm) Between Track (40.791mm,23.52mm)(41.547mm,24.275mm) on Top Layer And Track (41.3mm,24.569mm)(41.747mm,25.016mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1625.215mil|Location2.X=1639.222mil|Location1.Y=954.967mil|Location2.Y=969.073mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1625.215mil|Location2.X=1639.222mil|Location1.Y=954.967mil|Location2.Y=969.073mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (41.3mm,24.523mm)(41.3mm,24.569mm) on Top Layer And Track (41.547mm,24.275mm)(41.593mm,24.275mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1626.117mil|Location2.X=1639.094mil|Location1.Y=954.967mil|Location2.Y=969.998mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1626.117mil|Location2.X=1639.094mil|Location1.Y=954.967mil|Location2.Y=969.998mil|Absolute=True">Clearance Constraint: (0.237mm &lt; 0.254mm) Between Track (41.3mm,24.523mm)(41.3mm,24.569mm) on Top Layer And Track (41.593mm,24.275mm)(42.041mm,24.723mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1625.215mil|Location2.X=1640.156mil|Location1.Y=955.869mil|Location2.Y=968.953mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1625.215mil|Location2.X=1640.156mil|Location1.Y=955.869mil|Location2.Y=968.953mil|Absolute=True">Clearance Constraint: (0.237mm &lt; 0.254mm) Between Track (41.3mm,24.569mm)(41.747mm,25.016mm) on Top Layer And Track (41.547mm,24.275mm)(41.593mm,24.275mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1793.53mil|Location2.X=1807.636mil|Location1.Y=880.809mil|Location2.Y=894.816mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1793.53mil|Location2.X=1807.636mil|Location1.Y=880.809mil|Location2.Y=894.816mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (45.081mm,22.955mm)(45.575mm,22.462mm) on Top Layer And Track (45.822mm,22.709mm)(45.822mm,22.801mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1793.53mil|Location2.X=1807.636mil|Location1.Y=880.809mil|Location2.Y=894.816mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1793.53mil|Location2.X=1807.636mil|Location1.Y=880.809mil|Location2.Y=894.816mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (45.081mm,22.955mm)(45.575mm,22.462mm) on Top Layer And Track (45.822mm,22.709mm)(45.925mm,22.607mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1795.548mil|Location2.X=1806.798mil|Location1.Y=878.694mil|Location2.Y=889.944mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1795.548mil|Location2.X=1806.798mil|Location1.Y=878.694mil|Location2.Y=889.944mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (45.081mm,22.955mm)(45.575mm,22.462mm) on Top Layer And Track (45.925mm,17.731mm)(45.925mm,22.607mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1793.53mil|Location2.X=1807.636mil|Location1.Y=880.809mil|Location2.Y=894.816mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1793.53mil|Location2.X=1807.636mil|Location1.Y=880.809mil|Location2.Y=894.816mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (45.575mm,17.876mm)(45.575mm,22.462mm) on Top Layer And Track (45.822mm,22.709mm)(45.822mm,22.801mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1793.53mil|Location2.X=1807.636mil|Location1.Y=880.809mil|Location2.Y=894.816mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1793.53mil|Location2.X=1807.636mil|Location1.Y=880.809mil|Location2.Y=894.816mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (45.575mm,17.876mm)(45.575mm,22.462mm) on Top Layer And Track (45.822mm,22.709mm)(45.925mm,22.607mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1795.548mil|Location2.X=1806.798mil|Location1.Y=698.145mil|Location2.Y=709.395mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1795.548mil|Location2.X=1806.798mil|Location1.Y=698.145mil|Location2.Y=709.395mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (45.575mm,17.876mm)(45.575mm,22.462mm) on Top Layer And Track (45.925mm,17.731mm)(45.925mm,22.607mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1820.466mil|Location2.X=1833.551mil|Location1.Y=909.518mil|Location2.Y=924.459mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1820.466mil|Location2.X=1833.551mil|Location1.Y=909.518mil|Location2.Y=924.459mil|Absolute=True">Clearance Constraint: (0.237mm &lt; 0.254mm) Between Track (45.788mm,23.662mm)(46.236mm,23.215mm) on Top Layer And Track (46.529mm,23.462mm)(46.529mm,23.508mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1820.466mil|Location2.X=1833.551mil|Location1.Y=909.518mil|Location2.Y=924.459mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1820.466mil|Location2.X=1833.551mil|Location1.Y=909.518mil|Location2.Y=924.459mil|Absolute=True">Clearance Constraint: (0.237mm &lt; 0.254mm) Between Track (45.788mm,23.662mm)(46.236mm,23.215mm) on Top Layer And Track (46.529mm,23.462mm)(47.117mm,22.875mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1821.368mil|Location2.X=1836.4mil|Location1.Y=912.384mil|Location2.Y=925.361mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1821.368mil|Location2.X=1836.4mil|Location1.Y=912.384mil|Location2.Y=925.361mil|Absolute=True">Clearance Constraint: (0.237mm &lt; 0.254mm) Between Track (46.082mm,23.956mm)(46.529mm,23.508mm) on Top Layer And Track (46.236mm,23.215mm)(46.282mm,23.215mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1821.368mil|Location2.X=1836.4mil|Location1.Y=912.384mil|Location2.Y=925.361mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1821.368mil|Location2.X=1836.4mil|Location1.Y=912.384mil|Location2.Y=925.361mil|Absolute=True">Clearance Constraint: (0.237mm &lt; 0.254mm) Between Track (46.082mm,23.956mm)(46.529mm,23.508mm) on Top Layer And Track (46.282mm,23.215mm)(46.767mm,22.73mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1821.368mil|Location2.X=1835.474mil|Location1.Y=910.452mil|Location2.Y=924.459mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1821.368mil|Location2.X=1835.474mil|Location1.Y=910.452mil|Location2.Y=924.459mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (46.236mm,23.215mm)(46.282mm,23.215mm) on Top Layer And Track (46.529mm,23.462mm)(46.529mm,23.508mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1821.368mil|Location2.X=1835.474mil|Location1.Y=910.452mil|Location2.Y=924.459mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1821.368mil|Location2.X=1835.474mil|Location1.Y=910.452mil|Location2.Y=924.459mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (46.236mm,23.215mm)(46.282mm,23.215mm) on Top Layer And Track (46.529mm,23.462mm)(47.117mm,22.875mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1821.369mil|Location2.X=1835.475mil|Location1.Y=910.452mil|Location2.Y=924.459mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1821.369mil|Location2.X=1835.475mil|Location1.Y=910.452mil|Location2.Y=924.459mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (46.282mm,23.215mm)(46.767mm,22.73mm) on Top Layer And Track (46.529mm,23.462mm)(46.529mm,23.508mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1821.369mil|Location2.X=1835.475mil|Location1.Y=910.452mil|Location2.Y=924.459mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1821.369mil|Location2.X=1835.475mil|Location1.Y=910.452mil|Location2.Y=924.459mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (46.282mm,23.215mm)(46.767mm,22.73mm) on Top Layer And Track (46.529mm,23.462mm)(47.117mm,22.875mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1842.485mil|Location2.X=1853.735mil|Location1.Y=889.238mil|Location2.Y=900.488mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1842.485mil|Location2.X=1853.735mil|Location1.Y=889.238mil|Location2.Y=900.488mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (46.282mm,23.215mm)(46.767mm,22.73mm) on Top Layer And Track (47.117mm,22.085mm)(47.117mm,22.875mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1840.467mil|Location2.X=1854.573mil|Location1.Y=891.353mil|Location2.Y=905.36mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1840.467mil|Location2.X=1854.573mil|Location1.Y=891.353mil|Location2.Y=905.36mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (46.529mm,23.462mm)(47.117mm,22.875mm) on Top Layer And Track (46.767mm,21.94mm)(46.767mm,22.73mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1842.485mil|Location2.X=1853.735mil|Location1.Y=863.862mil|Location2.Y=875.112mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1842.485mil|Location2.X=1853.735mil|Location1.Y=863.862mil|Location2.Y=875.112mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (46.767mm,21.94mm)(46.767mm,22.73mm) on Top Layer And Track (47.117mm,22.085mm)(47.117mm,22.875mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1842.485mil|Location2.X=1853.735mil|Location1.Y=863.862mil|Location2.Y=875.112mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1842.485mil|Location2.X=1853.735mil|Location1.Y=863.862mil|Location2.Y=875.112mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (46.767mm,21.94mm)(46.767mm,22.73mm) on Top Layer And Track (47.117mm,22.085mm)(49.578mm,19.624mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1844.503mil|Location2.X=1858.609mil|Location1.Y=856.233mil|Location2.Y=870.24mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1844.503mil|Location2.X=1858.609mil|Location1.Y=856.233mil|Location2.Y=870.24mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (46.767mm,21.94mm)(49.228mm,19.479mm) on Top Layer And Track (47.117mm,22.085mm)(47.117mm,22.875mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1844.503mil|Location2.X=1858.609mil|Location1.Y=856.233mil|Location2.Y=870.24mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1844.503mil|Location2.X=1858.609mil|Location1.Y=856.233mil|Location2.Y=870.24mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (46.767mm,21.94mm)(49.228mm,19.479mm) on Top Layer And Track (47.117mm,22.085mm)(49.578mm,19.624mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1939.375mil|Location2.X=1950.625mil|Location1.Y=761.265mil|Location2.Y=772.515mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1939.375mil|Location2.X=1950.625mil|Location1.Y=761.265mil|Location2.Y=772.515mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (46.767mm,21.94mm)(49.228mm,19.479mm) on Top Layer And Track (49.578mm,13.322mm)(49.578mm,19.624mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1862.225mil|Location2.X=1875.309mil|Location1.Y=951.276mil|Location2.Y=966.217mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1862.225mil|Location2.X=1875.309mil|Location1.Y=951.276mil|Location2.Y=966.217mil|Absolute=True">Clearance Constraint: (0.237mm &lt; 0.254mm) Between Track (46.849mm,24.723mm)(47.297mm,24.275mm) on Top Layer And Track (47.59mm,24.523mm)(47.59mm,24.569mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1862.225mil|Location2.X=1875.309mil|Location1.Y=951.276mil|Location2.Y=966.217mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1862.225mil|Location2.X=1875.309mil|Location1.Y=951.276mil|Location2.Y=966.217mil|Absolute=True">Clearance Constraint: (0.237mm &lt; 0.254mm) Between Track (46.849mm,24.723mm)(47.297mm,24.275mm) on Top Layer And Track (47.59mm,24.523mm)(48.141mm,23.972mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1937.357mil|Location2.X=1951.463mil|Location1.Y=763.38mil|Location2.Y=777.386mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1937.357mil|Location2.X=1951.463mil|Location1.Y=763.38mil|Location2.Y=777.386mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (47.117mm,22.085mm)(49.578mm,19.624mm) on Top Layer And Track (49.228mm,13.322mm)(49.228mm,19.479mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1863.127mil|Location2.X=1878.158mil|Location1.Y=954.142mil|Location2.Y=967.119mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1863.127mil|Location2.X=1878.158mil|Location1.Y=954.142mil|Location2.Y=967.119mil|Absolute=True">Clearance Constraint: (0.237mm &lt; 0.254mm) Between Track (47.142mm,25.016mm)(47.59mm,24.569mm) on Top Layer And Track (47.297mm,24.275mm)(47.343mm,24.275mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1863.127mil|Location2.X=1878.158mil|Location1.Y=954.142mil|Location2.Y=967.119mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1863.127mil|Location2.X=1878.158mil|Location1.Y=954.142mil|Location2.Y=967.119mil|Absolute=True">Clearance Constraint: (0.237mm &lt; 0.254mm) Between Track (47.142mm,25.016mm)(47.59mm,24.569mm) on Top Layer And Track (47.343mm,24.275mm)(47.996mm,23.622mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1863.127mil|Location2.X=1877.233mil|Location1.Y=952.21mil|Location2.Y=966.217mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1863.127mil|Location2.X=1877.233mil|Location1.Y=952.21mil|Location2.Y=966.217mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (47.297mm,24.275mm)(47.343mm,24.275mm) on Top Layer And Track (47.59mm,24.523mm)(47.59mm,24.569mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1863.127mil|Location2.X=1877.233mil|Location1.Y=952.21mil|Location2.Y=966.217mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1863.127mil|Location2.X=1877.233mil|Location1.Y=952.21mil|Location2.Y=966.217mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (47.297mm,24.275mm)(47.343mm,24.275mm) on Top Layer And Track (47.59mm,24.523mm)(48.141mm,23.972mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1863.127mil|Location2.X=1877.233mil|Location1.Y=952.21mil|Location2.Y=966.217mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1863.127mil|Location2.X=1877.233mil|Location1.Y=952.21mil|Location2.Y=966.217mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (47.343mm,24.275mm)(47.996mm,23.622mm) on Top Layer And Track (47.59mm,24.523mm)(47.59mm,24.569mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1863.127mil|Location2.X=1877.233mil|Location1.Y=952.21mil|Location2.Y=966.217mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1863.127mil|Location2.X=1877.233mil|Location1.Y=952.21mil|Location2.Y=966.217mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (47.343mm,24.275mm)(47.996mm,23.622mm) on Top Layer And Track (47.59mm,24.523mm)(48.141mm,23.972mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1884.811mil|Location2.X=1898.917mil|Location1.Y=930.526mil|Location2.Y=944.533mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1884.811mil|Location2.X=1898.917mil|Location1.Y=930.526mil|Location2.Y=944.533mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (47.343mm,24.275mm)(47.996mm,23.622mm) on Top Layer And Track (48.141mm,23.972mm)(50.831mm,23.972mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1890.064mil|Location2.X=1903.148mil|Location1.Y=979.115mil|Location2.Y=994.056mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1890.064mil|Location2.X=1903.148mil|Location1.Y=979.115mil|Location2.Y=994.056mil|Absolute=True">Clearance Constraint: (0.237mm &lt; 0.254mm) Between Track (47.556mm,25.43mm)(48.004mm,24.982mm) on Top Layer And Track (48.297mm,25.23mm)(48.297mm,25.276mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1890.064mil|Location2.X=1903.148mil|Location1.Y=979.115mil|Location2.Y=994.056mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1890.064mil|Location2.X=1903.148mil|Location1.Y=979.115mil|Location2.Y=994.056mil|Absolute=True">Clearance Constraint: (0.237mm &lt; 0.254mm) Between Track (47.556mm,25.43mm)(48.004mm,24.982mm) on Top Layer And Track (48.297mm,25.23mm)(48.383mm,25.144mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1889.683mil|Location2.X=1900.933mil|Location1.Y=931.265mil|Location2.Y=942.515mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1889.683mil|Location2.X=1900.933mil|Location1.Y=931.265mil|Location2.Y=942.515mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (47.59mm,24.523mm)(48.141mm,23.972mm) on Top Layer And Track (47.996mm,23.622mm)(50.686mm,23.622mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1890.966mil|Location2.X=1905.997mil|Location1.Y=981.981mil|Location2.Y=994.958mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1890.966mil|Location2.X=1905.997mil|Location1.Y=981.981mil|Location2.Y=994.958mil|Absolute=True">Clearance Constraint: (0.237mm &lt; 0.254mm) Between Track (47.85mm,25.723mm)(48.297mm,25.276mm) on Top Layer And Track (48.004mm,24.982mm)(48.05mm,24.982mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1890.966mil|Location2.X=1905.997mil|Location1.Y=981.981mil|Location2.Y=994.958mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1890.966mil|Location2.X=1905.997mil|Location1.Y=981.981mil|Location2.Y=994.958mil|Absolute=True">Clearance Constraint: (0.237mm &lt; 0.254mm) Between Track (47.85mm,25.723mm)(48.297mm,25.276mm) on Top Layer And Track (48.05mm,24.982mm)(48.238mm,24.794mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.888mil|Location2.X=2001.138mil|Location1.Y=931.265mil|Location2.Y=942.515mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.888mil|Location2.X=2001.138mil|Location1.Y=931.265mil|Location2.Y=942.515mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (47.996mm,23.622mm)(50.686mm,23.622mm) on Top Layer And Track (48.141mm,23.972mm)(50.831mm,23.972mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1994.76mil|Location2.X=2008.866mil|Location1.Y=926.49mil|Location2.Y=940.497mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1994.76mil|Location2.X=2008.866mil|Location1.Y=926.49mil|Location2.Y=940.497mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (47.996mm,23.622mm)(50.686mm,23.622mm) on Top Layer And Track (50.831mm,23.972mm)(57.543mm,17.26mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1890.966mil|Location2.X=1905.072mil|Location1.Y=980.049mil|Location2.Y=994.056mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1890.966mil|Location2.X=1905.072mil|Location1.Y=980.049mil|Location2.Y=994.056mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (48.004mm,24.982mm)(48.05mm,24.982mm) on Top Layer And Track (48.297mm,25.23mm)(48.297mm,25.276mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1890.966mil|Location2.X=1905.072mil|Location1.Y=980.049mil|Location2.Y=994.056mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1890.966mil|Location2.X=1905.072mil|Location1.Y=980.049mil|Location2.Y=994.056mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (48.004mm,24.982mm)(48.05mm,24.982mm) on Top Layer And Track (48.297mm,25.23mm)(48.383mm,25.144mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1892.658mil|Location2.X=1903.908mil|Location1.Y=975.281mil|Location2.Y=992.363mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1892.658mil|Location2.X=1903.908mil|Location1.Y=975.281mil|Location2.Y=992.363mil|Absolute=True">Clearance Constraint: (0.224mm &lt; 0.254mm) Between Track (48.004mm,24.982mm)(48.05mm,24.982mm) on Top Layer And Track (48.383mm,25.144mm)(50.495mm,25.144mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1890.966mil|Location2.X=1905.072mil|Location1.Y=980.049mil|Location2.Y=994.056mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1890.966mil|Location2.X=1905.072mil|Location1.Y=980.049mil|Location2.Y=994.056mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (48.05mm,24.982mm)(48.238mm,24.794mm) on Top Layer And Track (48.297mm,25.23mm)(48.297mm,25.276mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1890.966mil|Location2.X=1905.072mil|Location1.Y=980.049mil|Location2.Y=994.056mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1890.966mil|Location2.X=1905.072mil|Location1.Y=980.049mil|Location2.Y=994.056mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (48.05mm,24.982mm)(48.238mm,24.794mm) on Top Layer And Track (48.297mm,25.23mm)(48.383mm,25.144mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1894.351mil|Location2.X=1908.457mil|Location1.Y=976.664mil|Location2.Y=990.67mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1894.351mil|Location2.X=1908.457mil|Location1.Y=976.664mil|Location2.Y=990.67mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (48.05mm,24.982mm)(48.238mm,24.794mm) on Top Layer And Track (48.383mm,25.144mm)(50.495mm,25.144mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.888mil|Location2.X=2001.138mil|Location1.Y=931.265mil|Location2.Y=942.515mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1989.888mil|Location2.X=2001.138mil|Location1.Y=931.265mil|Location2.Y=942.515mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (48.141mm,23.972mm)(50.831mm,23.972mm) on Top Layer And Track (50.686mm,23.622mm)(57.398mm,16.91mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1899.223mil|Location2.X=1910.473mil|Location1.Y=977.403mil|Location2.Y=988.653mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1899.223mil|Location2.X=1910.473mil|Location1.Y=977.403mil|Location2.Y=988.653mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (48.238mm,24.794mm)(50.64mm,24.794mm) on Top Layer And Track (48.297mm,25.23mm)(48.383mm,25.144mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1899.223mil|Location2.X=1910.473mil|Location1.Y=977.403mil|Location2.Y=988.653mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1899.223mil|Location2.X=1910.473mil|Location1.Y=977.403mil|Location2.Y=988.653mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (48.238mm,24.794mm)(50.64mm,24.794mm) on Top Layer And Track (48.383mm,25.144mm)(50.495mm,25.144mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1982.368mil|Location2.X=1993.618mil|Location1.Y=977.403mil|Location2.Y=988.653mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1982.368mil|Location2.X=1993.618mil|Location1.Y=977.403mil|Location2.Y=988.653mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (48.238mm,24.794mm)(50.64mm,24.794mm) on Top Layer And Track (50.495mm,25.144mm)(58.625mm,33.274mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1987.24mil|Location2.X=2001.247mil|Location1.Y=979.42mil|Location2.Y=993.527mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1987.24mil|Location2.X=2001.247mil|Location1.Y=979.42mil|Location2.Y=993.527mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (48.383mm,25.144mm)(50.495mm,25.144mm) on Top Layer And Track (50.64mm,24.794mm)(58.77mm,32.924mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1939.375mil|Location2.X=1950.625mil|Location1.Y=518.879mil|Location2.Y=530.129mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1939.375mil|Location2.X=1950.625mil|Location1.Y=518.879mil|Location2.Y=530.129mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (49.142mm,13.236mm)(49.228mm,13.322mm) on Top Layer And Track (49.578mm,13.322mm)(49.578mm,19.624mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1939.375mil|Location2.X=1950.625mil|Location1.Y=518.879mil|Location2.Y=530.129mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1939.375mil|Location2.X=1950.625mil|Location1.Y=518.879mil|Location2.Y=530.129mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (49.142mm,13.236mm)(49.228mm,13.322mm) on Top Layer And Track (49.578mm,13.322mm)(49.664mm,13.236mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1939.375mil|Location2.X=1950.625mil|Location1.Y=761.265mil|Location2.Y=772.515mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1939.375mil|Location2.X=1950.625mil|Location1.Y=761.265mil|Location2.Y=772.515mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (49.228mm,13.322mm)(49.228mm,19.479mm) on Top Layer And Track (49.578mm,13.322mm)(49.578mm,19.624mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1939.375mil|Location2.X=1950.625mil|Location1.Y=518.879mil|Location2.Y=530.129mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1939.375mil|Location2.X=1950.625mil|Location1.Y=518.879mil|Location2.Y=530.129mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (49.228mm,13.322mm)(49.228mm,19.479mm) on Top Layer And Track (49.578mm,13.322mm)(49.664mm,13.236mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2303.287mil|Location2.X=2317.294mil|Location1.Y=1295.467mil|Location2.Y=1309.573mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2303.287mil|Location2.X=2317.294mil|Location1.Y=1295.467mil|Location2.Y=1309.573mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (50.495mm,25.144mm)(58.625mm,33.274mm) on Top Layer And Track (50.64mm,24.794mm)(58.77mm,32.924mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2303.287mil|Location2.X=2317.294mil|Location1.Y=1295.467mil|Location2.Y=1309.573mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2303.287mil|Location2.X=2317.294mil|Location1.Y=1295.467mil|Location2.Y=1309.573mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (50.495mm,25.144mm)(58.625mm,33.274mm) on Top Layer And Track (58.77mm,32.924mm)(61.831mm,32.924mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2308.158mil|Location2.X=2319.408mil|Location1.Y=1297.485mil|Location2.Y=1308.735mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2308.158mil|Location2.X=2319.408mil|Location1.Y=1297.485mil|Location2.Y=1308.735mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (50.64mm,24.794mm)(58.77mm,32.924mm) on Top Layer And Track (58.625mm,33.274mm)(61.976mm,33.274mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1994.76mil|Location2.X=2008.866mil|Location1.Y=926.49mil|Location2.Y=940.497mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1994.76mil|Location2.X=2008.866mil|Location1.Y=926.49mil|Location2.Y=940.497mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (50.686mm,23.622mm)(57.398mm,16.91mm) on Top Layer And Track (50.831mm,23.972mm)(57.543mm,17.26mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2254.976mil|Location2.X=2269.082mil|Location1.Y=666.274mil|Location2.Y=680.28mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2254.976mil|Location2.X=2269.082mil|Location1.Y=666.274mil|Location2.Y=680.28mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (50.686mm,23.622mm)(57.398mm,16.91mm) on Top Layer And Track (57.543mm,17.26mm)(59.852mm,17.26mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2259.848mil|Location2.X=2271.098mil|Location1.Y=667.012mil|Location2.Y=678.262mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2259.848mil|Location2.X=2271.098mil|Location1.Y=667.012mil|Location2.Y=678.262mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (50.831mm,23.972mm)(57.543mm,17.26mm) on Top Layer And Track (57.398mm,16.91mm)(59.997mm,16.91mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2259.848mil|Location2.X=2271.098mil|Location1.Y=667.012mil|Location2.Y=678.262mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2259.848mil|Location2.X=2271.098mil|Location1.Y=667.012mil|Location2.Y=678.262mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (57.398mm,16.91mm)(59.997mm,16.91mm) on Top Layer And Track (57.543mm,17.26mm)(59.852mm,17.26mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2350.737mil|Location2.X=2361.987mil|Location1.Y=667.012mil|Location2.Y=678.262mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2350.737mil|Location2.X=2361.987mil|Location1.Y=667.012mil|Location2.Y=678.262mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (57.398mm,16.91mm)(59.997mm,16.91mm) on Top Layer And Track (59.852mm,17.26mm)(59.938mm,17.346mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.609mil|Location2.X=2369.616mil|Location1.Y=669.03mil|Location2.Y=683.136mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.609mil|Location2.X=2369.616mil|Location1.Y=669.03mil|Location2.Y=683.136mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (57.543mm,17.26mm)(59.852mm,17.26mm) on Top Layer And Track (59.997mm,16.91mm)(60.288mm,17.201mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2308.158mil|Location2.X=2319.408mil|Location1.Y=1297.485mil|Location2.Y=1308.735mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2308.158mil|Location2.X=2319.408mil|Location1.Y=1297.485mil|Location2.Y=1308.735mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (58.625mm,33.274mm)(61.976mm,33.274mm) on Top Layer And Track (58.77mm,32.924mm)(61.831mm,32.924mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2428.668mil|Location2.X=2439.918mil|Location1.Y=1297.485mil|Location2.Y=1308.735mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2428.668mil|Location2.X=2439.918mil|Location1.Y=1297.485mil|Location2.Y=1308.735mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (58.625mm,33.274mm)(61.976mm,33.274mm) on Top Layer And Track (61.831mm,32.924mm)(62.436mm,32.319mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2433.539mil|Location2.X=2447.645mil|Location1.Y=1292.71mil|Location2.Y=1306.717mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2433.539mil|Location2.X=2447.645mil|Location1.Y=1292.71mil|Location2.Y=1306.717mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (58.77mm,32.924mm)(61.831mm,32.924mm) on Top Layer And Track (61.976mm,33.274mm)(62.786mm,32.464mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2370.032mil|Location2.X=2381.282mil|Location1.Y=574.894mil|Location2.Y=586.144mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2370.032mil|Location2.X=2381.282mil|Location1.Y=574.894mil|Location2.Y=586.144mil|Absolute=True">Clearance Constraint: (0.237mm &lt; 0.254mm) Between Track (59.703mm,15.193mm)(60.15mm,14.745mm) on Top Layer And Track (60.533mm,14.717mm)(60.533mm,14.838mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2370.032mil|Location2.X=2381.282mil|Location1.Y=574.331mil|Location2.Y=585.581mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2370.032mil|Location2.X=2381.282mil|Location1.Y=574.331mil|Location2.Y=585.581mil|Absolute=True">Clearance Constraint: (0.238mm &lt; 0.254mm) Between Track (59.703mm,15.193mm)(60.15mm,14.745mm) on Top Layer And Track (60.533mm,14.717mm)(61.105mm,14.145mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2370.032mil|Location2.X=2381.282mil|Location1.Y=569.872mil|Location2.Y=587.975mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2370.032mil|Location2.X=2381.282mil|Location1.Y=569.872mil|Location2.Y=587.975mil|Absolute=True">Clearance Constraint: (0.248mm &lt; 0.254mm) Between Track (59.703mm,15.193mm)(60.15mm,14.745mm) on Top Layer And Track (60.533mm,14.838mm)(60.653mm,14.958mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.609mil|Location2.X=2369.616mil|Location1.Y=669.03mil|Location2.Y=683.136mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2355.609mil|Location2.X=2369.616mil|Location1.Y=669.03mil|Location2.Y=683.136mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (59.852mm,17.26mm)(59.938mm,17.346mm) on Top Layer And Track (59.997mm,16.91mm)(60.288mm,17.201mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2361.012mil|Location2.X=2372.262mil|Location1.Y=675.251mil|Location2.Y=693.228mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2361.012mil|Location2.X=2372.262mil|Location1.Y=675.251mil|Location2.Y=693.228mil|Absolute=True">Clearance Constraint: (0.218mm &lt; 0.254mm) Between Track (59.852mm,17.26mm)(59.938mm,17.346mm) on Top Layer And Track (60.288mm,17.201mm)(60.288mm,17.243mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2361.012mil|Location2.X=2372.262mil|Location1.Y=675.251mil|Location2.Y=693.228mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2361.012mil|Location2.X=2372.262mil|Location1.Y=675.251mil|Location2.Y=693.228mil|Absolute=True">Clearance Constraint: (0.218mm &lt; 0.254mm) Between Track (59.852mm,17.26mm)(59.938mm,17.346mm) on Top Layer And Track (60.288mm,17.243mm)(60.427mm,17.382mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2358.994mil|Location2.X=2373.001mil|Location1.Y=672.416mil|Location2.Y=686.522mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2358.994mil|Location2.X=2373.001mil|Location1.Y=672.416mil|Location2.Y=686.522mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (59.938mm,17.346mm)(59.938mm,17.468mm) on Top Layer And Track (59.997mm,16.91mm)(60.288mm,17.201mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2361.012mil|Location2.X=2372.262mil|Location1.Y=675.251mil|Location2.Y=693.228mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2361.012mil|Location2.X=2372.262mil|Location1.Y=675.251mil|Location2.Y=693.228mil|Absolute=True">Clearance Constraint: (0.218mm &lt; 0.254mm) Between Track (59.938mm,17.346mm)(59.938mm,17.468mm) on Top Layer And Track (60.288mm,17.201mm)(60.288mm,17.243mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2361.012mil|Location2.X=2372.262mil|Location1.Y=675.251mil|Location2.Y=693.228mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2361.012mil|Location2.X=2372.262mil|Location1.Y=675.251mil|Location2.Y=693.228mil|Absolute=True">Clearance Constraint: (0.218mm &lt; 0.254mm) Between Track (59.938mm,17.346mm)(59.938mm,17.468mm) on Top Layer And Track (60.288mm,17.243mm)(60.427mm,17.382mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2370.032mil|Location2.X=2381.282mil|Location1.Y=573.769mil|Location2.Y=585.019mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2370.032mil|Location2.X=2381.282mil|Location1.Y=573.769mil|Location2.Y=585.019mil|Absolute=True">Clearance Constraint: (0.237mm &lt; 0.254mm) Between Track (60.15mm,14.605mm)(60.15mm,14.745mm) on Top Layer And Track (60.533mm,14.717mm)(60.533mm,14.838mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2370.032mil|Location2.X=2381.282mil|Location1.Y=573.769mil|Location2.Y=585.019mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2370.032mil|Location2.X=2381.282mil|Location1.Y=573.769mil|Location2.Y=585.019mil|Absolute=True">Clearance Constraint: (0.237mm &lt; 0.254mm) Between Track (60.15mm,14.605mm)(60.15mm,14.745mm) on Top Layer And Track (60.533mm,14.717mm)(61.105mm,14.145mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2370.032mil|Location2.X=2381.282mil|Location1.Y=569.872mil|Location2.Y=587.975mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2370.032mil|Location2.X=2381.282mil|Location1.Y=569.872mil|Location2.Y=587.975mil|Absolute=True">Clearance Constraint: (0.248mm &lt; 0.254mm) Between Track (60.15mm,14.605mm)(60.15mm,14.745mm) on Top Layer And Track (60.533mm,14.838mm)(60.653mm,14.958mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2372.708mil|Location2.X=2386.814mil|Location1.Y=566.14mil|Location2.Y=580.147mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2372.708mil|Location2.X=2386.814mil|Location1.Y=566.14mil|Location2.Y=580.147mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (60.15mm,14.605mm)(60.96mm,13.795mm) on Top Layer And Track (60.533mm,14.717mm)(60.533mm,14.838mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2372.708mil|Location2.X=2386.814mil|Location1.Y=566.14mil|Location2.Y=580.147mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2372.708mil|Location2.X=2386.814mil|Location1.Y=566.14mil|Location2.Y=580.147mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (60.15mm,14.605mm)(60.96mm,13.795mm) on Top Layer And Track (60.533mm,14.717mm)(61.105mm,14.145mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2395.212mil|Location2.X=2409.318mil|Location1.Y=543.636mil|Location2.Y=557.643mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2395.212mil|Location2.X=2409.318mil|Location1.Y=543.636mil|Location2.Y=557.643mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (60.15mm,14.605mm)(60.96mm,13.795mm) on Top Layer And Track (61.105mm,14.145mm)(63.655mm,14.145mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2400.084mil|Location2.X=2411.334mil|Location1.Y=544.375mil|Location2.Y=555.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2400.084mil|Location2.X=2411.334mil|Location1.Y=544.375mil|Location2.Y=555.625mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (60.533mm,14.717mm)(61.105mm,14.145mm) on Top Layer And Track (60.96mm,13.795mm)(63.655mm,13.795mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2400.084mil|Location2.X=2411.334mil|Location1.Y=544.375mil|Location2.Y=555.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2400.084mil|Location2.X=2411.334mil|Location1.Y=544.375mil|Location2.Y=555.625mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (60.96mm,13.795mm)(63.655mm,13.795mm) on Top Layer And Track (61.105mm,14.145mm)(63.655mm,14.145mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2500.477mil|Location2.X=2511.727mil|Location1.Y=544.375mil|Location2.Y=555.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2500.477mil|Location2.X=2511.727mil|Location1.Y=544.375mil|Location2.Y=555.625mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (60.96mm,13.795mm)(63.655mm,13.795mm) on Top Layer And Track (63.655mm,14.145mm)(64.115mm,14.605mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2500.477mil|Location2.X=2511.727mil|Location1.Y=544.375mil|Location2.Y=555.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2500.477mil|Location2.X=2511.727mil|Location1.Y=544.375mil|Location2.Y=555.625mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (61.105mm,14.145mm)(63.655mm,14.145mm) on Top Layer And Track (63.655mm,13.795mm)(64.115mm,13.335mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2433.539mil|Location2.X=2447.645mil|Location1.Y=1292.71mil|Location2.Y=1306.717mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2433.539mil|Location2.X=2447.645mil|Location1.Y=1292.71mil|Location2.Y=1306.717mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (61.831mm,32.924mm)(62.436mm,32.319mm) on Top Layer And Track (61.976mm,33.274mm)(62.786mm,32.464mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2459.375mil|Location2.X=2470.625mil|Location1.Y=1266.778mil|Location2.Y=1278.028mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2459.375mil|Location2.X=2470.625mil|Location1.Y=1266.778mil|Location2.Y=1278.028mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (61.831mm,32.924mm)(62.436mm,32.319mm) on Top Layer And Track (62.786mm,31.582mm)(62.786mm,32.464mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2457.357mil|Location2.X=2471.463mil|Location1.Y=1268.892mil|Location2.Y=1282.899mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2457.357mil|Location2.X=2471.463mil|Location1.Y=1268.892mil|Location2.Y=1282.899mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (61.976mm,33.274mm)(62.786mm,32.464mm) on Top Layer And Track (62.436mm,31.582mm)(62.436mm,32.319mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2457.311mil|Location2.X=2468.561mil|Location1.Y=1510.273mil|Location2.Y=1521.523mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2457.311mil|Location2.X=2468.561mil|Location1.Y=1510.273mil|Location2.Y=1521.523mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (62.298mm,38.59mm)(62.384mm,38.504mm) on Bottom Layer And Track (62.734mm,37.054mm)(62.734mm,38.504mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2457.311mil|Location2.X=2468.561mil|Location1.Y=1510.273mil|Location2.Y=1521.523mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2457.311mil|Location2.X=2468.561mil|Location1.Y=1510.273mil|Location2.Y=1521.523mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (62.298mm,38.59mm)(62.384mm,38.504mm) on Bottom Layer And Track (62.734mm,38.504mm)(62.82mm,38.59mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2459.375mil|Location2.X=2470.625mil|Location1.Y=1237.761mil|Location2.Y=1249.011mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2459.375mil|Location2.X=2470.625mil|Location1.Y=1237.761mil|Location2.Y=1249.011mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (62.35mm,31.496mm)(62.436mm,31.582mm) on Top Layer And Track (62.786mm,31.582mm)(62.786mm,32.464mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2459.375mil|Location2.X=2470.625mil|Location1.Y=1237.761mil|Location2.Y=1249.011mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2459.375mil|Location2.X=2470.625mil|Location1.Y=1237.761mil|Location2.Y=1249.011mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (62.35mm,31.496mm)(62.436mm,31.582mm) on Top Layer And Track (62.786mm,31.582mm)(62.872mm,31.496mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2459.375mil|Location2.X=2470.625mil|Location1.Y=1428.879mil|Location2.Y=1440.129mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2459.375mil|Location2.X=2470.625mil|Location1.Y=1428.879mil|Location2.Y=1440.129mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (62.35mm,36.35mm)(62.436mm,36.436mm) on Bottom Layer And Track (62.786mm,36.436mm)(62.786mm,37.002mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2459.375mil|Location2.X=2470.625mil|Location1.Y=1428.879mil|Location2.Y=1440.129mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2459.375mil|Location2.X=2470.625mil|Location1.Y=1428.879mil|Location2.Y=1440.129mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (62.35mm,36.35mm)(62.436mm,36.436mm) on Bottom Layer And Track (62.786mm,36.436mm)(62.872mm,36.35mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2457.311mil|Location2.X=2468.561mil|Location1.Y=1453.202mil|Location2.Y=1464.452mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2457.311mil|Location2.X=2468.561mil|Location1.Y=1453.202mil|Location2.Y=1464.452mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (62.384mm,36.909mm)(62.384mm,38.504mm) on Bottom Layer And Track (62.734mm,37.054mm)(62.734mm,38.504mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2457.311mil|Location2.X=2468.561mil|Location1.Y=1453.202mil|Location2.Y=1464.452mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2457.311mil|Location2.X=2468.561mil|Location1.Y=1453.202mil|Location2.Y=1464.452mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (62.384mm,36.909mm)(62.384mm,38.504mm) on Bottom Layer And Track (62.734mm,37.054mm)(62.786mm,37.002mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2457.311mil|Location2.X=2468.561mil|Location1.Y=1510.273mil|Location2.Y=1521.523mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2457.311mil|Location2.X=2468.561mil|Location1.Y=1510.273mil|Location2.Y=1521.523mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (62.384mm,36.909mm)(62.384mm,38.504mm) on Bottom Layer And Track (62.734mm,38.504mm)(62.82mm,38.59mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2458.343mil|Location2.X=2469.894mil|Location1.Y=1444.519mil|Location2.Y=1460.566mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2458.343mil|Location2.X=2469.894mil|Location1.Y=1444.519mil|Location2.Y=1460.566mil|Absolute=True">Clearance Constraint: (0.21mm &lt; 0.254mm) Between Track (62.384mm,36.909mm)(62.436mm,36.857mm) on Bottom Layer And Track (62.734mm,37.054mm)(62.734mm,38.504mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2458.343mil|Location2.X=2469.894mil|Location1.Y=1444.519mil|Location2.Y=1460.566mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2458.343mil|Location2.X=2469.894mil|Location1.Y=1444.519mil|Location2.Y=1460.566mil|Absolute=True">Clearance Constraint: (0.21mm &lt; 0.254mm) Between Track (62.384mm,36.909mm)(62.436mm,36.857mm) on Bottom Layer And Track (62.734mm,37.054mm)(62.786mm,37.002mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2459.375mil|Location2.X=2470.625mil|Location1.Y=1445.43mil|Location2.Y=1456.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2459.375mil|Location2.X=2470.625mil|Location1.Y=1445.43mil|Location2.Y=1456.68mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (62.384mm,36.909mm)(62.436mm,36.857mm) on Bottom Layer And Track (62.786mm,36.436mm)(62.786mm,37.002mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2459.375mil|Location2.X=2470.625mil|Location1.Y=1266.778mil|Location2.Y=1278.028mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2459.375mil|Location2.X=2470.625mil|Location1.Y=1266.778mil|Location2.Y=1278.028mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (62.436mm,31.582mm)(62.436mm,32.319mm) on Top Layer And Track (62.786mm,31.582mm)(62.786mm,32.464mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2459.375mil|Location2.X=2470.625mil|Location1.Y=1237.761mil|Location2.Y=1249.011mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2459.375mil|Location2.X=2470.625mil|Location1.Y=1237.761mil|Location2.Y=1249.011mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (62.436mm,31.582mm)(62.436mm,32.319mm) on Top Layer And Track (62.786mm,31.582mm)(62.872mm,31.496mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2458.343mil|Location2.X=2469.894mil|Location1.Y=1444.519mil|Location2.Y=1460.566mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2458.343mil|Location2.X=2469.894mil|Location1.Y=1444.519mil|Location2.Y=1460.566mil|Absolute=True">Clearance Constraint: (0.21mm &lt; 0.254mm) Between Track (62.436mm,36.436mm)(62.436mm,36.857mm) on Bottom Layer And Track (62.734mm,37.054mm)(62.734mm,38.504mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2458.343mil|Location2.X=2469.894mil|Location1.Y=1444.519mil|Location2.Y=1460.566mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2458.343mil|Location2.X=2469.894mil|Location1.Y=1444.519mil|Location2.Y=1460.566mil|Absolute=True">Clearance Constraint: (0.21mm &lt; 0.254mm) Between Track (62.436mm,36.436mm)(62.436mm,36.857mm) on Bottom Layer And Track (62.734mm,37.054mm)(62.786mm,37.002mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2459.375mil|Location2.X=2470.625mil|Location1.Y=1445.43mil|Location2.Y=1456.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2459.375mil|Location2.X=2470.625mil|Location1.Y=1445.43mil|Location2.Y=1456.68mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (62.436mm,36.436mm)(62.436mm,36.857mm) on Bottom Layer And Track (62.786mm,36.436mm)(62.786mm,37.002mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2459.375mil|Location2.X=2470.625mil|Location1.Y=1428.879mil|Location2.Y=1440.129mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2459.375mil|Location2.X=2470.625mil|Location1.Y=1428.879mil|Location2.Y=1440.129mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (62.436mm,36.436mm)(62.436mm,36.857mm) on Bottom Layer And Track (62.786mm,36.436mm)(62.872mm,36.35mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2500.477mil|Location2.X=2511.727mil|Location1.Y=544.375mil|Location2.Y=555.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2500.477mil|Location2.X=2511.727mil|Location1.Y=544.375mil|Location2.Y=555.625mil|Absolute=True">Clearance Constraint: (0.203mm &lt; 0.254mm) Between Track (63.655mm,13.795mm)(64.115mm,13.335mm) on Top Layer And Track (63.655mm,14.145mm)(64.115mm,14.605mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDA4U2VLNNS02VZ0L5YN5APIPKEUDQU20SXEUY2I4HLXIB3D2EL2K"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1839.094mil|Location2.X=3276.653mil|Location1.Y=1149.094mil|Location2.Y=1631.26mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1839.094mil|Location2.X=3276.653mil|Location1.Y=1149.094mil|Location2.Y=1631.26mil|Absolute=True">Un-Routed Net Constraint: Net +3V3 Between Via (47.371mm,29.845mm) from Top Layer to Bottom Layer And Pad R5-2(82.677mm,40.894mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDZGK2VLDPFLBVB03ZAA2WMA1W2GUV5HFJ02FMAPFVRLNJ2Z1PTYFD"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Width Constraint (Min=0.254mm) (Max=1mm) (Preferred=0.6mm) (InNet('GND'))</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1819.824mil|Location2.X=1839.111mil|Location1.Y=1029.563mil|Location2.Y=1040.437mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1819.824mil|Location2.X=1839.111mil|Location1.Y=1029.563mil|Location2.Y=1040.437mil|Absolute=True">Width Constraint: Track (46.228mm,26.289mm)(46.495mm,26.289mm) on Top Layer Actual Width = 0.2mm, Target Width = 0.254mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1844.784mil|Location2.X=1862.008mil|Location1.Y=1049.262mil|Location2.Y=1060.656mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1844.784mil|Location2.X=1862.008mil|Location1.Y=1049.262mil|Location2.Y=1060.656mil|Absolute=True">Width Constraint: Track (46.495mm,26.289mm)(47.496mm,27.29mm) on Top Layer Actual Width = 0.2mm, Target Width = 0.254mm</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDRTACFU3GL1X4OLZR0DSHHYKJBCZFVWQUCIIQU3LNR13FONMPUYFP"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Width Constraint (Min=0.127mm) (Max=1mm) (Preferred=0.254mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1852.929mil|Location2.X=1870.404mil|Location1.Y=1084.003mil|Location2.Y=1092.632mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1852.929mil|Location2.X=1870.404mil|Location1.Y=1084.003mil|Location2.Y=1092.632mil|Absolute=True">Width Constraint: Track (47.142mm,27.643mm)(47.206mm,27.643mm) on Top Layer Actual Width = 0.143mm (5.6299mil), Target Width = 0.1427mm (5.6181mil)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1862.943mil|Location2.X=1878.455mil|Location1.Y=1092.773mil|Location2.Y=1102.756mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1862.943mil|Location2.X=1878.455mil|Location1.Y=1092.773mil|Location2.Y=1102.756mil|Absolute=True">Width Constraint: Track (47.206mm,27.643mm)(47.651mm,28.089mm) on Top Layer Actual Width = 0.143mm (5.6299mil), Target Width = 0.1427mm (5.6181mil)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1925.225mil|Location2.X=1942.699mil|Location1.Y=1101.544mil|Location2.Y=1110.174mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1925.225mil|Location2.X=1942.699mil|Location1.Y=1101.544mil|Location2.Y=1110.174mil|Absolute=True">Width Constraint: Track (47.651mm,28.089mm)(50.369mm,28.089mm) on Top Layer Actual Width = 0.143mm (5.6299mil), Target Width = 0.1427mm (5.6181mil)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1993.305mil|Location2.X=2008.818mil|Location1.Y=1116.115mil|Location2.Y=1126.098mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1993.305mil|Location2.X=2008.818mil|Location1.Y=1116.115mil|Location2.Y=1126.098mil|Absolute=True">Width Constraint: Track (50.369mm,28.089mm)(51.11mm,28.829mm) on Top Layer Actual Width = 0.143mm (5.6299mil), Target Width = 0.1427mm (5.6181mil)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2019.281mil|Location2.X=2036.755mil|Location1.Y=1130.685mil|Location2.Y=1139.315mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2019.281mil|Location2.X=2036.755mil|Location1.Y=1130.685mil|Location2.Y=1139.315mil|Absolute=True">Width Constraint: Track (51.11mm,28.829mm)(51.689mm,28.829mm) on Top Layer Actual Width = 0.143mm (5.6299mil), Target Width = 0.1427mm (5.6181mil)</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

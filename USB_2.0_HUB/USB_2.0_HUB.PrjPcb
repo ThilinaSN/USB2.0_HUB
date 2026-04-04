@@ -287,6 +287,10 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=CGCPGXYP
 
+[GeneratedDocument1]
+DocumentPath=Project Outputs for USB_2.0_HUB\Design Rule Check - USB2.html
+DItemRevisionGUID=
+
 [Configuration1]
 Name=Sources
 ParameterCount=0
@@ -1296,9 +1300,9 @@ UpdateToLatestRevision=1
 PartTypes=0
 
 [NetInfos]
-Net1=NetName=+3V3|NetColor=clYellow
-Net2=NetName=+3V3 ESP1|NetColor=clYellow
-Net3=NetName=+3V3 ESP2|NetColor=clYellow
+Net1=NetName=+3V3|NetColor=$0066D9FF
+Net2=NetName=+3V3 ESP1|NetColor=$0066D9FF
+Net3=NetName=+3V3 ESP2|NetColor=$0066D9FF
 Net4=NetName=+5V FILT PORT2|NetColor=$000099FF
 Net5=NetName=+5V FILT PORT4|NetColor=$000099FF
 Net6=NetName=+5V HOST|NetColor=$000099FF
@@ -1311,46 +1315,51 @@ Net12=NetName=+5V PORT4|NetColor=$000099FF
 Net13=NetName=+5V VBUS_EXT|NetColor=$000099FF
 Net14=NetName=GND|NetColor=$00666666
 Net15=NetName=NetJ3_1|NetColor=$000099FF
-Net16=NetName=USB_HOST_A_D_N|NetColor=$00D8783C
-Net17=NetName=USB_HOST_A_D_P|NetColor=$00D8783C
-Net18=NetName=USB_HOST_D_N|NetColor=$00D8783C
-Net19=NetName=USB_HOST_D_P|NetColor=$00D8783C
-Net20=NetName=USB_HUB_CRFILT|NetColor=$004FA86A
-Net21=NetName=USB_HUB_HS_IND|NetColor=$004FA86A
-Net22=NetName=USB_HUB_NOCS1|NetColor=$00A07BC2
-Net23=NetName=USB_HUB_NOCS2|NetColor=$00A07BC2
-Net24=NetName=USB_HUB_NOCS3|NetColor=$00A07BC2
-Net25=NetName=USB_HUB_NOCS4|NetColor=$00A07BC2
-Net26=NetName=USB_HUB_PLLFILT|NetColor=$004FA86A
-Net27=NetName=USB_HUB_PRTPWR1|NetColor=clFuchsia
-Net28=NetName=USB_HUB_PRTPWR2|NetColor=clFuchsia
-Net29=NetName=USB_HUB_PRTPWR3|NetColor=clFuchsia
-Net30=NetName=USB_HUB_PRTPWR4|NetColor=clFuchsia
-Net31=NetName=USB_HUB_RBIAS|NetColor=$004FA86A
-Net32=NetName=USB_HUB_SCL|NetColor=$004FA86A
-Net33=NetName=USB_HUB_SDA|NetColor=$004FA86A
-Net34=NetName=USB_HUB_SUSP_IND|NetColor=$004FA86A
-Net35=NetName=USB_HUB_XTALIN|NetColor=$004FA86A
-Net36=NetName=USB_HUB_XTALOUT|NetColor=$004FA86A
-Net37=NetName=USB_HUB1_D_N|NetColor=$00D8783C
-Net38=NetName=USB_HUB1_D_P|NetColor=$00D8783C
-Net39=NetName=USB_HUB2_D_N|NetColor=$00D8783C
-Net40=NetName=USB_HUB2_D_P|NetColor=$00D8783C
-Net41=NetName=USB_HUB3_D_N|NetColor=$00D8783C
-Net42=NetName=USB_HUB3_D_P|NetColor=$00D8783C
-Net43=NetName=USB_HUB4_D_N|NetColor=$00D8783C
-Net44=NetName=USB_HUB4_D_P|NetColor=$00D8783C
-Net45=NetName=USB_PORT1_D_N|NetColor=$00D8783C
-Net46=NetName=USB_PORT1_D_P|NetColor=$00D8783C
-Net47=NetName=USB_PORT2_D_N|NetColor=$00D8783C
-Net48=NetName=USB_PORT2_D_P|NetColor=$00D8783C
-Net49=NetName=USB_PORT3_D_N|NetColor=$00D8783C
-Net50=NetName=USB_PORT3_D_P|NetColor=$00D8783C
-Net51=NetName=USB_PORT4_D_N|NetColor=$00D8783C
-Net52=NetName=USB_PORT4_D_P|NetColor=$00D8783C
-Net53=NetName=VBUS_DET|NetColor=$004FA86A
-Net54=NetName=VIN_ESP1|NetColor=$000099FF
-Net55=NetName=VIN_ESP2|NetColor=$000099FF
+Net16=NetName=SH_GND|NetColor=$00B7B7B7
+Net17=NetName=SH1_GND|NetColor=$00B7B7B7
+Net18=NetName=SH2_GND|NetColor=$00B7B7B7
+Net19=NetName=SH3_GND|NetColor=$00B7B7B7
+Net20=NetName=SH4_GND|NetColor=$00B7B7B7
+Net21=NetName=USB_HOST_A_D_N|NetColor=$00D8783C
+Net22=NetName=USB_HOST_A_D_P|NetColor=$00D8783C
+Net23=NetName=USB_HOST_D_N|NetColor=$00D8783C
+Net24=NetName=USB_HOST_D_P|NetColor=$00D8783C
+Net25=NetName=USB_HUB_CRFILT|NetColor=$004FA86A
+Net26=NetName=USB_HUB_HS_IND|NetColor=$004FA86A
+Net27=NetName=USB_HUB_NOCS1|NetColor=$00A07BC2
+Net28=NetName=USB_HUB_NOCS2|NetColor=$00A07BC2
+Net29=NetName=USB_HUB_NOCS3|NetColor=$00A07BC2
+Net30=NetName=USB_HUB_NOCS4|NetColor=$00A07BC2
+Net31=NetName=USB_HUB_PLLFILT|NetColor=$004FA86A
+Net32=NetName=USB_HUB_PRTPWR1|NetColor=clFuchsia
+Net33=NetName=USB_HUB_PRTPWR2|NetColor=clFuchsia
+Net34=NetName=USB_HUB_PRTPWR3|NetColor=clFuchsia
+Net35=NetName=USB_HUB_PRTPWR4|NetColor=clFuchsia
+Net36=NetName=USB_HUB_RBIAS|NetColor=$004FA86A
+Net37=NetName=USB_HUB_SCL|NetColor=$004FA86A
+Net38=NetName=USB_HUB_SDA|NetColor=$004FA86A
+Net39=NetName=USB_HUB_SUSP_IND|NetColor=$004FA86A
+Net40=NetName=USB_HUB_XTALIN|NetColor=$004FA86A
+Net41=NetName=USB_HUB_XTALOUT|NetColor=$004FA86A
+Net42=NetName=USB_HUB1_D_N|NetColor=$00D8783C
+Net43=NetName=USB_HUB1_D_P|NetColor=$00D8783C
+Net44=NetName=USB_HUB2_D_N|NetColor=$00D8783C
+Net45=NetName=USB_HUB2_D_P|NetColor=$00D8783C
+Net46=NetName=USB_HUB3_D_N|NetColor=$00D8783C
+Net47=NetName=USB_HUB3_D_P|NetColor=$00D8783C
+Net48=NetName=USB_HUB4_D_N|NetColor=$00D8783C
+Net49=NetName=USB_HUB4_D_P|NetColor=$00D8783C
+Net50=NetName=USB_PORT1_D_N|NetColor=$00D8783C
+Net51=NetName=USB_PORT1_D_P|NetColor=$00D8783C
+Net52=NetName=USB_PORT2_D_N|NetColor=$00D8783C
+Net53=NetName=USB_PORT2_D_P|NetColor=$00D8783C
+Net54=NetName=USB_PORT3_D_N|NetColor=$00D8783C
+Net55=NetName=USB_PORT3_D_P|NetColor=$00D8783C
+Net56=NetName=USB_PORT4_D_N|NetColor=$00D8783C
+Net57=NetName=USB_PORT4_D_P|NetColor=$00D8783C
+Net58=NetName=VBUS_DET|NetColor=$004FA86A
+Net59=NetName=VIN_ESP1|NetColor=$000099FF
+Net60=NetName=VIN_ESP2|NetColor=$000099FF
 
 [Comparison Options]
 ComparisonOptions0=Kind=Net|MinPercent=75|MinMatch=3|ShowMatch=0|UseName=-1|InclAllRules=0
