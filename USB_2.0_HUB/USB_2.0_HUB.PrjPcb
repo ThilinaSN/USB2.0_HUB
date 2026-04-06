@@ -1313,7 +1313,7 @@ Net10=NetName=+5V PORT2|NetColor=$000099FF
 Net11=NetName=+5V PORT3|NetColor=$000099FF
 Net12=NetName=+5V PORT4|NetColor=$000099FF
 Net13=NetName=+5V VBUS_EXT|NetColor=$000099FF
-Net14=NetName=GND|NetColor=$00666666
+Net14=NetName=GND|NetColor=$00434343
 Net15=NetName=NetJ3_1|NetColor=$000099FF
 Net16=NetName=SH_GND|NetColor=$00B7B7B7
 Net17=NetName=SH1_GND|NetColor=$00B7B7B7
