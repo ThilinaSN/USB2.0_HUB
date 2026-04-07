@@ -287,6 +287,23 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=CGCPGXYP
 
+[Document15]
+DocumentPath=Job.OutJob
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=0
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
 [GeneratedDocument1]
 DocumentPath=Project Outputs for USB_2.0_HUB\Design Rule Check - USB2.html
 DItemRevisionGUID=
