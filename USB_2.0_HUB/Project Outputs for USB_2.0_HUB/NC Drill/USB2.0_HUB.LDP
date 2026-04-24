@@ -1,0 +1,3 @@
+Layer Pairs Export File for PCB: D:\GitHub\USB2.0_HUB\USB_2.0_HUB\USB2.0_HUB.PcbDoc
+LayersSetName=Top_Bot_Thru_Holes|DrillFile=usb2.0_hub-roundholes.txt|DrillLayers=gtl,gp1,g1,gbl
+LayersSetName=Top_Bot_Slot_Holes|DrillFile=usb2.0_hub-slotholes.txt|DrillLayers=gtl,gp1,g1,gbl

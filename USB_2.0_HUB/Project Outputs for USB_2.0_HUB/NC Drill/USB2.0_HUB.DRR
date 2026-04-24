@@ -1,0 +1,21 @@
+----------------------------------------------------------------------------------------------------------------------------------
+NCDrill File Report For: USB2.0_HUB.PcbDoc   4/24/2026  3:18:00 PM
+----------------------------------------------------------------------------------------------------------------------------------
+
+Layer Pair : Top Layer to Bottom Layer
+ASCII RoundHoles File : USB2.0_HUB-RoundHoles.TXT
+ASCII SlotHoles File : USB2.0_HUB-SlotHoles.TXT
+
+Tool       Hole Size               Hole Tolerance               Hole Type       Hole Count   Plated         Tool Travel
+----------------------------------------------------------------------------------------------------------------------------------
+T1      0.3mm (12mil)                                             Round             299       PTH        1102.89mm (43.42inch)
+T2      0.6mm (24mil)                                             Slot              8         PTH        264.29mm (10.41inch)
+T3      0.7mm (28mil)                                             Slot              4         PTH        230.90mm (9.09inch)
+T4      0.9mm (35mil)                                             Slot              2         PTH        26.71mm (1.05inch)
+T5      2.2mm (87mil)                                             Round             5         PTH        212.28mm (8.36inch)
+T6      0.65mm (26mil)                                            Round             4         NPTH       110.62mm (4.35inch)
+T7      1.3mm (51mil)                                             Round             2         NPTH       4.50mm (0.18inch)
+----------------------------------------------------------------------------------------------------------------------------------
+Totals                                                                              324
+
+Total Processing Time (hh:mm:ss) : 00:00:01
